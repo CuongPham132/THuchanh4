@@ -14,6 +14,10 @@ const TrangChu = () => {
 				</div>
 				<h1 className='title'>THỰC HÀNH LẬP TRÌNH WEB</h1>
 				<h2 className='sub-title'>{unitName.toUpperCase()}</h2>
+				<h2 className='sub-title'>Đỗ Đức Phong</h2>
+				<h2 className='sub-title'>Phạm Nguyễn Cường</h2>
+				<h2 className='sub-title'>Trần Thị Hòa</h2>
+				<h2 className='sub-title'>Bùi Đức Mạnh</h2>
 			</div>
 		</Card>
 	);
