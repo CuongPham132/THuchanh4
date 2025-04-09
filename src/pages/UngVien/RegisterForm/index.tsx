@@ -23,7 +23,13 @@ const RegisterForm = () => {
       form={form}
       layout="vertical"
       onFinish={onFinish}
-      style={{ maxWidth: 600, margin: '0 auto' }}
+      style={{
+        maxWidth: '100%',
+        width: '100%',
+        padding: '16px',
+        boxSizing: 'border-box',
+      }}
+      className="form-wrapper"
     >
       <h2>Đăng ký ứng tuyển</h2>
 
@@ -64,7 +70,7 @@ const RegisterForm = () => {
       </Form.Item>
 
       <Form.Item>
-        <Button type="primary" htmlType="submit">
+        <Button type="primary" htmlType="submit" block>
           Gửi đăng ký
         </Button>
       </Form.Item>

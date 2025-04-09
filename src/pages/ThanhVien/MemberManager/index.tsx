@@ -16,7 +16,7 @@ const MemberManager = () => {
       .filter((item) => item.status === 'Approved')
       .map((item, index) => ({
         key: index,
-        fullName: item.fullName || item.name, // phòng trường hợp khác tên biến
+        fullName: item.fullName || item.name,
         email: item.email,
         role: item.role || item.nguyenVong || 'Thành viên',
         group: item.group || 'Team Design',
@@ -30,6 +30,16 @@ const MemberManager = () => {
     );
     setMembers(updatedMembers);
     message.success(`Đã đổi nhóm cho ${record.fullName}`);
+
+    // Cập nhật localStorage
+    const allApplications = JSON.parse(localStorage.getItem('applications')) || [];
+    const updatedApplications = allApplications.map((app) => {
+      if ((app.fullName || app.name) === record.fullName && app.email === record.email) {
+        return { ...app, group: value };
+      }
+      return app;
+    });
+    localStorage.setItem('applications', JSON.stringify(updatedApplications));
   };
 
   const exportToExcel = () => {
@@ -118,6 +128,7 @@ const MemberManager = () => {
       <h1 style={{ textAlign: 'center', fontSize: '28px', fontWeight: 'bold', marginBottom: 24 }}>
         DANH SÁCH THÀNH VIÊN
       </h1>
+
       <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 16 }}>
         {isFiltered ? (
           <Button type="primary" onClick={clearFilters}>
@@ -127,27 +138,18 @@ const MemberManager = () => {
           <div />
         )}
 
-        <Tooltip title="Export Excel">
+        <Tooltip title="Xuất danh sách thành viên ra Excel">
           <Button
-            onClick={exportToExcel}
             icon={<FileExcelOutlined />}
+            onClick={exportToExcel}
             style={{
-              width: 32,
-              height: 36,
-              backgroundColor: '#fff',
+              backgroundColor: '#cf1322',
               borderColor: '#cf1322',
-              color: '#cf1322',
-              fontSize: 20,
+              color: '#fff',
             }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = '#cf1322';
-              e.currentTarget.style.color = 'white';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = '#fff';
-              e.currentTarget.style.color = '#cf1322';
-            }}
-          />
+          >
+            Xuất Excel
+          </Button>
         </Tooltip>
       </div>
 
@@ -157,6 +159,11 @@ const MemberManager = () => {
         pagination={{ position: ['bottomCenter'] }}
         bordered
         onChange={(pagination, filters) => setFilteredInfo(filters)}
+        footer={() => (
+          <div style={{ textAlign: 'right', fontWeight: 'bold' }}>
+            Tổng cộng: {members.length} thành viên
+          </div>
+        )}
       />
     </div>
   );

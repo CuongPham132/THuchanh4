@@ -26,15 +26,15 @@ const ReportDashboard = () => {
   }, []);
 
   return (
-    <div>
-      <h2>Báo cáo & Thống kê</h2>
+    <div style={{ padding: 16 }}>
+      <h2 style={{ textAlign: 'center', marginBottom: 24 }}>Báo cáo & Thống kê</h2>
       <Row gutter={[16, 16]}>
-        <Col span={8}><Card><Statistic title="Tổng đơn" value={stats.Total} /></Card></Col>
-        <Col span={8}><Card><Statistic title="Design" value={stats.Design} /></Card></Col>
-        <Col span={8}><Card><Statistic title="Dev" value={stats.Dev} /></Card></Col>
-        <Col span={8}><Card><Statistic title="Media" value={stats.Media} /></Card></Col>
-        <Col span={8}><Card><Statistic title="Đã duyệt" value={stats.Approved} valueStyle={{ color: 'green' }} /></Card></Col>
-        <Col span={8}><Card><Statistic title="Từ chối" value={stats.Rejected} valueStyle={{ color: 'red' }} /></Card></Col>
+        <Col xs={24} sm={12} md={8}><Card><Statistic title="Tổng đơn" value={stats.Total} /></Card></Col>
+        <Col xs={24} sm={12} md={8}><Card><Statistic title="Design" value={stats.Design} /></Card></Col>
+        <Col xs={24} sm={12} md={8}><Card><Statistic title="Dev" value={stats.Dev} /></Card></Col>
+        <Col xs={24} sm={12} md={8}><Card><Statistic title="Media" value={stats.Media} /></Card></Col>
+        <Col xs={24} sm={12} md={8}><Card><Statistic title="Đã duyệt" value={stats.Approved} valueStyle={{ color: 'green' }} /></Card></Col>
+        <Col xs={24} sm={12} md={8}><Card><Statistic title="Từ chối" value={stats.Rejected} valueStyle={{ color: 'red' }} /></Card></Col>
       </Row>
     </div>
   );

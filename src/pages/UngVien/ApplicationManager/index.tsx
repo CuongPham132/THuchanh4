@@ -138,14 +138,18 @@ const ApplicantManagement: React.FC = () => {
         onChange={(e) => setSearchText(e.target.value)}
         className="mb-4"
       />
-
-      <Table
-        columns={columns}
-        dataSource={filteredData}
-        pagination={{ pageSize: 5 }}
-        rowKey="key"
-      />
-
+  
+      {/* Bọc bảng để hỗ trợ responsive trên mobile */}
+      <div style={{ overflowX: "auto" }}>
+        <Table
+          columns={columns}
+          dataSource={filteredData}
+          pagination={{ pageSize: 5 }}
+          rowKey="key"
+          scroll={{ x: "max-content" }} // Cho phép cuộn ngang
+        />
+      </div>
+  
       <Modal
         title="Từ chối ứng viên"
         visible={modalVisible}
@@ -166,6 +170,7 @@ const ApplicantManagement: React.FC = () => {
       </Modal>
     </div>
   );
+  
 };
 
 export default ApplicantManagement;
